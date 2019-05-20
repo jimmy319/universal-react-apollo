@@ -1,0 +1,9 @@
+# Dependency folder
+node_modules
+
+# Compiled file
+lib
+
+# Logs
+logs
+*.log

@@ -1,0 +1,77 @@
+{
+  "name": "universal-react-apollo",
+  "version": "1.0.0",
+  "description": "Lightweight wrapper library around react-apollo and apollo-server-express to build universal (isomorphic) app with less boilerplate",
+  "main": "universal-react-apollo.cjs.js",
+  "module": "universal-react-apollo.esm.js",
+  "scripts": {
+    "pre-build": "rimraf lib",
+    "build": "rollup -c",
+    "test": "jest"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmy319/universal-react-apollo.git"
+  },
+  "keywords": [
+    "react",
+    "apollo",
+    "graphql",
+    "universal",
+    "isomorphic",
+    "ssr"
+  ],
+  "author": "jimmy74319@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimmy319/universal-react-apollo/issues"
+  },
+  "homepage": "https://github.com/jimmy319/universal-react-apollo#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "peerDependencies": {
+    "apollo-client": "^2.5.0",
+    "apollo-cache-inmemory": "^1.5.0",
+    "apollo-link-http": "^1.5.0",
+    "apollo-link-schema": "^1.2.0",
+    "apollo-server-express": "^2.0.0",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-apollo": "^2.5.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "graphql": "^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0",
+    "graphql-tools": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "apollo-cache-inmemory": "^1.5.1",
+    "apollo-client": "^2.5.1",
+    "apollo-link-http": "^1.5.14",
+    "apollo-link-schema": "^1.2.2",
+    "apollo-server-express": "^2.5.0",
+    "express": "^4.17.0",
+    "graphql": "^14.3.0",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.4",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
+    "prettier": "^1.17.1",
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.5",
+    "react-dom": "^16.8.6",
+    "rollup": "^1.12.3",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-node-resolve": "^5.0.0"
+  }
+}

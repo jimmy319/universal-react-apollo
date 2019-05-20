@@ -1,0 +1,38 @@
+{
+  "name": "helloWorld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "sideEffects": false,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.5.1",
+    "apollo-client": "^2.5.1",
+    "apollo-link-http": "^1.5.14",
+    "apollo-link-schema": "^1.2.2",
+    "apollo-server-express": "^2.5.0",
+    "express": "^4.17.0",
+    "graphql": "^14.3.0",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.4",
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.5",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.31.0",
+    "webpack-dev-middleware": "^3.7.0"
+  }
+}
