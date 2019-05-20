@@ -12,7 +12,9 @@ jobs:
     - stage: npm release
       if: tag IS present
       node_js: '10'
-      before_script: npm run pre-build
+      before_script:
+        - npm run pre-build
+        - chmod +x ./setupPackage.sh
       script: npm run build
       before_deploy: ./setupPackage.sh && cd lib
       deploy:
