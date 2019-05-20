@@ -1,4 +1,4 @@
-# Universal React Apollo
+# Universal React Apollo <a href='https://travis-ci.org/jimmy319/universal-react-apollo'><img src='https://travis-ci.org/jimmy319/universal-react-apollo.svg?branch=master' /></a>
 
 Universal React Apollo is a lightweight wrapper library around [react-apollo](https://github.com/apollographql/react-apollo) and [apollo-server-express](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express) to make it easy to build an universal app and reduce boilerplate code.
 
