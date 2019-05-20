@@ -25,7 +25,7 @@ export default [
   {
     method: 'get', // default is get if this field is not defined
     path: '/home',
-    mainElement: <HomeApp />,
+    appElement: <HomeApp />,
     headElement: <title>Home</title>,
     bodyBottomElement: <script src="/static/bundle.js"></script>
   }
