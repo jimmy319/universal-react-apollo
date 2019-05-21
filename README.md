@@ -106,7 +106,7 @@ This function will mount [apollo-server-express](https://github.com/apollographq
 
 *arguments:*
 
-|               |                                                                                                                                                                                |
+|      arg      |                                                                        description                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | app           | Express app instance                                                                                                                                                           |
 | routes        | An array of route object (see data model section)                                                                                                                              | 
@@ -119,7 +119,7 @@ Hydrate the universal app container (reuse server-side generated HTML content an
 
 *arguments:*
 
-|               |                                                                                                                                                                     |
+|     arg       |                                                      description                                                                                                    |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | appElement    | Main application react element                                                                                                                                      |
 
@@ -129,7 +129,7 @@ Hydrate the universal app container (reuse server-side generated HTML content an
 
 *fields:*
 
-|                   |                                                                                                                                                                     |
+|         field     |                                                    description                                                                                                      |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | path              | Same as Express middleware [path argument](https://expressjs.com/en/api.html#path-examples)                                                                         | 
 | appElement        | The React element you want to render into the app container when given path is matched                                                                              |
@@ -142,7 +142,7 @@ Hydrate the universal app container (reuse server-side generated HTML content an
 
 *fields:*
 
-|                   |                                                                                                                                                                     |
+|         field     |                                                         description                                                                                                 |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | typeDefs          | GraphQL schema language string, array of GraphQL schema language strings or a function that return an array of GraphQL schema strings                               |
 | resolvers         | GQL resolvers object                                                                                                                                                | 
