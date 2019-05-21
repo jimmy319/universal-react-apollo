@@ -104,42 +104,50 @@ Server side rendering error will be passed to `next()` so that you can write you
 
 This function will mount [apollo-server-express](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express) middleware to the express app instance you passed in and create the application routing handlers according to the route config.
 
-arguments:
+*arguments:*
 
- - app: Express app instance
- - routes: An array of route object (see data model section)
- - apolloOptions: Apollo server related config options (see data model section)
- - production: Flag indicates that the universal app is running in production mode or not. We use this flag to decide to turn on or off GQL playground. Default value is false.
+|               |                                                                                                                                                                                |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| app           | Express app instance                                                                                                                                                           |
+| routes        | An array of route object (see data model section)                                                                                                                              | 
+| apolloOptions | Apollo server related config options (see data model section)                                                                                                                  |
+| production    | (optional) Flag indicates that the universal app is running in production mode or not. We use this flag to decide to turn on or off `GQL playground`. Default value is `false` |
 
 ### clientRender(appElement)
 
 Hydrate the universal app container (reuse server-side generated HTML content and attach event listeners to existing markup).
 
-arguments:
+*arguments:*
 
-- appElement: Main application react element
+|               |                                                                                                                                                                     |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| appElement    | Main application react element                                                                                                                                      |
 
 ## Data Model
 
 ### route
 
-fields:
+*fields:*
 
-- method: The http method of the request. Express [app.METHOD](https://expressjs.com/en/api.html#app.METHOD) supported routing methods are all valid
-- path: Same as Express middleware [path argument](https://expressjs.com/en/api.html#path-examples)
-- appElement: The React element you want to render into the app container when given path is matched
-- headElement: The React element you want to render into the `<head>` tag when given path is matched
-- bodyBottomElement: The React element you want to render into the bottom of `<body>` tag when given path is matched
-- middlewareChain: An array of express middleware function
+|                   |                                                                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path              | Same as Express middleware [path argument](https://expressjs.com/en/api.html#path-examples)                                                                         | 
+| appElement        | The React element you want to render into the app container when given path is matched                                                                              |
+| method            | (optional) The http method of the request. Express [app.METHOD](https://expressjs.com/en/api.html#app.METHOD) supported routing methods are all valid               |
+| headElement       | (optional) The React element you want to render into the `<head>` tag when given path is matched                                                                    |
+| bodyBottomElement | (optional) The React element you want to render into the bottom of `<body>` tag when given path is matched                                                          |
+| middlewareChain   | (optional) An array of express middleware function                                                                                                                  |
 
 ### apolloOptions
 
-fields:
+*fields:*
 
-- typeDefs: GraphQL schema language string, array of GraphQL schema language strings or a function that return an array of GraphQL schema strings
-- resolvers: GQL resolvers object
-- dataSources: GQL data sources object
-- contextCreator: A function called with the current request that return a context object shared across all resolvers
+|                   |                                                                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| typeDefs          | GraphQL schema language string, array of GraphQL schema language strings or a function that return an array of GraphQL schema strings                               |
+| resolvers         | GQL resolvers object                                                                                                                                                | 
+| dataSources       | GQL data sources object                                                                                                                                             |
+| contextCreator    | (optional) A function called with the current request that return a context object shared across all resolvers                                                      |
 
 ```js
 // context creator example:
