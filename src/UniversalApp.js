@@ -36,6 +36,7 @@ const initServer = function(
             appElement,
             headElement,
             bodyBottomElement,
+            req,
             typeDefs,
             resolvers,
             dataSources,

@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/greeting/:userName',
     appElement: <HomeApp />,
-    bodyBottomElement: <script src="/home.js"></script>
+    bodyBottomElement: ({ req }) => (<script src="/home.js"></script>)
   }
 ]
 

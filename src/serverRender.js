@@ -10,14 +10,15 @@ import Html from "./Html";
 
 /**
  * Fetch all required states via graphql operations and render application with them in server side
- * @param {Object} options server side rendering options
+ * @param {Object} options Server side rendering options
  * @param {ReactElement} options.appElement: Application main React Element
  * @param {String} options.typeDefs GraphQL schema language string, array of GraphQL schema language strings or a function that return an array of GraphQL schema strings
  * @param {Object} options.resolvers GQL resolvers object - optional
  * @param {Object} options.dataSources GQL data sources object
  * @param {Object} options.context context object which will be shared across all resolvers
- * @param {ReactElement} options.headElement React Element which will be placed in the HTML <head>
- * @param {ReactElement} options.bodyBottomElement React Element which will be placed in the bottom of the HTML <body>
+ * @param {Function} options.headElement A function called with the current request that return a React Element which will be placed in the HTML <head>
+ * @param {Function} options.bodyBottomElement A function called with the current request that return a React Element which will be placed in the bottom of the HTML <body>
+ * @param {Object} options.req Express request object
  */
 export default function serverRender({
   appElement,
@@ -26,7 +27,8 @@ export default function serverRender({
   dataSources,
   context,
   headElement,
-  bodyBottomElement
+  bodyBottomElement,
+  req
 }) {
   // create Apollo client
   const schema = makeExecutableSchema({ typeDefs, resolvers });
@@ -51,8 +53,14 @@ export default function serverRender({
       <Html
         content={content}
         initialState={initialState}
-        headElement={headElement}
-        bodyBottomElement={bodyBottomElement}
+        headElement={
+          typeof headElement === "function" ? headElement({ req }) : null
+        }
+        bodyBottomElement={
+          typeof bodyBottomElement === "function"
+            ? bodyBottomElement({ req })
+            : null
+        }
       />
     );
 
