@@ -3,22 +3,16 @@ import { ApolloServer } from "apollo-server-express";
 import serverRender from "./serverRender";
 import { LIB_TAG } from "./config/constants";
 
-const initServer = function(
-  app,
-  routes,
-  { typeDefs, resolvers, dataSources, contextCreator },
-  production
-) {
+const initServer = function(app, routes, apolloServerOptions, production) {
   // mount apollo-server-express middleware
   const apolloServer = new ApolloServer({
-    typeDefs,
-    resolvers,
-    dataSources: () => dataSources,
-    context: contextCreator,
+    ...apolloServerOptions,
     uploads: false,
     playground: !production
   });
   apolloServer.applyMiddleware({ app });
+
+  const { typeDefs, resolvers, dataSources, context } = apolloServerOptions;
 
   // mount application routing
   if (Array.isArray(routes)) {
@@ -39,8 +33,12 @@ const initServer = function(
             req,
             typeDefs,
             resolvers,
-            dataSources,
-            context: contextCreator({ req, connection: {}, res })
+            dataSources:
+              typeof dataSources === "function" ? dataSources() : null,
+            context:
+              typeof context === "function"
+                ? context({ req, connection: {}, res })
+                : context
           })
             .then(html => {
               res.status(200);

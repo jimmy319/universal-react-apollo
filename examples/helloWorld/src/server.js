@@ -25,10 +25,12 @@ const routes = [
 const apolloOptions = {
   typeDefs,
   resolvers,
-  dataSources: {
-    messageApi
+  dataSources: () => {
+    return {
+      messageApi
+    }
   },
-  contextCreator: ({ req }) => {
+  context: ({ req }) => {
     return {
       userName: req.params.userName
     }

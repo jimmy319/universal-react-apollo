@@ -16,6 +16,7 @@ import Html from "./Html";
  * @param {Object} options.resolvers GQL resolvers object - optional
  * @param {Object} options.dataSources GQL data sources object
  * @param {Object} options.context context object which will be shared across all resolvers
+ * @param {Object} options.schemaDirectives schema directive definition object
  * @param {Function} options.headElement A function called with the current request that return a React Element which will be placed in the HTML <head>
  * @param {Function} options.bodyBottomElement A function called with the current request that return a React Element which will be placed in the bottom of the HTML <body>
  * @param {Object} options.req Express request object
@@ -26,12 +27,17 @@ export default function serverRender({
   resolvers,
   dataSources,
   context,
+  schemaDirectives,
   headElement,
   bodyBottomElement,
   req
 }) {
   // create Apollo client
-  const schema = makeExecutableSchema({ typeDefs, resolvers });
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers,
+    schemaDirectives
+  });
   const client = new ApolloClient({
     ssrMode: true,
     link: new SchemaLink({

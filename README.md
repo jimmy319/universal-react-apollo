@@ -50,8 +50,8 @@ const app = express()
 const apolloOptions = {
   typeDefs,
   resolvers,
-  dataSources,
-  contextCreator: ({ req }) => {
+  dataSources: () => dataSources,
+  context: ({ req }) => {
     return {
       cookies: req.cookies
     }
@@ -110,7 +110,7 @@ This function will mount [apollo-server-express](https://github.com/apollographq
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | app           | Express app instance                                                                                                                                                           |
 | routes        | An array of route object (see data model section)                                                                                                                              | 
-| apolloOptions | Apollo server related config options (see data model section)                                                                                                                  |
+| apolloOptions | [Apollo server configuration options](https://www.apollographql.com/docs/apollo-server/api/apollo-server/#parameters)                                                          |
 | production    | (optional) Flag indicates that the universal app is running in production mode or not. We use this flag to decide to turn on or off `GQL playground`. Default value is `false` |
 
 ### clientRender(appElement)
@@ -137,26 +137,3 @@ Hydrate the universal app container (reuse server-side generated HTML content an
 | headElement       | (optional) A function called with current request that return a React element you want to render into the `<head>` tag when given path is matched                   |
 | bodyBottomElement | (optional) A function called with current request that return a React element you want to render into the bottom of `<body>` tag when given path is matched         |
 | middlewareChain   | (optional) An array of express middleware function                                                                                                                  |
-
-### apolloOptions
-
-*fields:*
-
-|         field     |                                                         description                                                                                                 |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| typeDefs          | GraphQL schema language string, array of GraphQL schema language strings or a function that return an array of GraphQL schema strings                               |
-| resolvers         | GQL resolvers object                                                                                                                                                | 
-| dataSources       | GQL data sources object                                                                                                                                             |
-| contextCreator    | (optional) A function called with the current request that return a context object shared across all resolvers                                                      |
-
-```js
-// context creator example:
-
-{
-  contextCreator: function({ req }) {
-    return {
-      cookie: req.headers.cookie
-    }
-  }
-}
-```
