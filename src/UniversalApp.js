@@ -12,7 +12,13 @@ const initServer = function(app, routes, apolloServerOptions, production) {
   });
   apolloServer.applyMiddleware({ app });
 
-  const { typeDefs, resolvers, dataSources, context } = apolloServerOptions;
+  const {
+    typeDefs,
+    resolvers,
+    dataSources,
+    context,
+    schemaDirectives
+  } = apolloServerOptions;
 
   // mount application routing
   if (Array.isArray(routes)) {
@@ -38,7 +44,8 @@ const initServer = function(app, routes, apolloServerOptions, production) {
             context:
               typeof context === "function"
                 ? context({ req, connection: {}, res })
-                : context
+                : context,
+            schemaDirectives
           })
             .then(html => {
               res.status(200);
