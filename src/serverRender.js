@@ -15,6 +15,7 @@ import Html from "./Html";
  * @param {String} options.typeDefs GraphQL schema language string, array of GraphQL schema language strings or a function that return an array of GraphQL schema strings
  * @param {Object} options.resolvers GQL resolvers object - optional
  * @param {Object} options.dataSources GQL data sources object
+ * @param {Object} options.cache GQL data source cache config object - optional
  * @param {Object} options.context context object which will be shared across all resolvers
  * @param {Object} options.schemaDirectives schema directive definition object
  * @param {Function} options.headElement A function called with the current request that return a React Element which will be placed in the HTML <head>
@@ -26,6 +27,7 @@ export default function serverRender({
   typeDefs,
   resolvers,
   dataSources,
+  cache,
   context,
   schemaDirectives,
   headElement,
@@ -38,6 +40,15 @@ export default function serverRender({
     resolvers,
     schemaDirectives
   });
+  // initialize the data source, required for Apollo RESTDataSource
+  for (const dataSource of Object.values(dataSources)) {
+    if (typeof dataSource.initialize === "function") {
+      dataSource.initialize({
+        context,
+        cache
+      });
+    }
+  }
   const client = new ApolloClient({
     ssrMode: true,
     link: new SchemaLink({
