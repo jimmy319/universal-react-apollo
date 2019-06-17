@@ -39,6 +39,7 @@ const initServer = function(app, routes, apolloServerOptions, production) {
             req,
             typeDefs,
             resolvers,
+            cache: apolloServer.requestOptions.cache,
             dataSources:
               typeof dataSources === "function" ? dataSources() : null,
             context:
