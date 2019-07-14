@@ -1,6 +1,6 @@
 import { ApolloServer } from "apollo-server-express";
 
-import serverRender from "./serverRender";
+import createServerRender from "./createServerRender";
 import { LIB_TAG } from "./config/constants";
 
 const initServer = function(app, routes, apolloServerOptions, production) {
@@ -20,6 +20,13 @@ const initServer = function(app, routes, apolloServerOptions, production) {
     schemaDirectives
   } = apolloServerOptions;
 
+  // create server render
+  const serverRender = createServerRender({
+    typeDefs,
+    resolvers,
+    schemaDirectives
+  });
+
   // mount application routing
   if (Array.isArray(routes)) {
     routes.forEach(
@@ -37,16 +44,13 @@ const initServer = function(app, routes, apolloServerOptions, production) {
             headElement,
             bodyBottomElement,
             req,
-            typeDefs,
-            resolvers,
             cache: apolloServer.requestOptions.cache,
             dataSources:
               typeof dataSources === "function" ? dataSources() : null,
             context:
               typeof context === "function"
                 ? context({ req, connection: {}, res })
-                : context,
-            schemaDirectives
+                : context
           })
             .then(html => {
               res.status(200);
