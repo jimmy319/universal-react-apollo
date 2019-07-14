@@ -53,10 +53,7 @@ const initServer = function(app, routes, apolloServerOptions, production) {
               res.send(html);
               res.end();
             })
-            .catch(exception => {
-              const error = new Error(
-                `[${LIB_TAG}] Error occurs during server-side rendering, details: ${exception}`
-              );
+            .catch(error => {
               next(error);
             });
         });
