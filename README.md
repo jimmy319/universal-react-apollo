@@ -25,6 +25,7 @@ export default [
   {
     method: 'get', // default is get if this field is not defined
     path: '/home',
+    htmlTagAttrs: {lang: 'en-GB'},
     appElement: <HomeApp />,
     headElement: ({ req }) => (<title>Home</title>),
     bodyBottomElement: ({ req }) => (<script src="/static/bundle.js"></script>)
@@ -134,6 +135,7 @@ Hydrate the universal app container (reuse server-side generated HTML content an
 | path              | Same as Express middleware [path argument](https://expressjs.com/en/api.html#path-examples)                                                                         | 
 | appElement        | The React element you want to render into the app container when given path is matched                                                                              |
 | method            | (optional) The http method of the request. Express [app.METHOD](https://expressjs.com/en/api.html#app.METHOD) supported routing methods are all valid               |
+| htmlTagAttrs      | (optional) Dom attributes of <Html> tag                                                                                                                             |
 | headElement       | (optional) A function called with current request that return a React element you want to render into the `<head>` tag when given path is matched                   |
 | bodyBottomElement | (optional) A function called with current request that return a React element you want to render into the bottom of `<body>` tag when given path is matched         |
 | middlewareChain   | (optional) An array of express middleware function                                                                                                                  |

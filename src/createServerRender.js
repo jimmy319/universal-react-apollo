@@ -33,6 +33,7 @@ export default function createServerRender({
    * @param {Object} options
    * @param {Object} options.dataSources GQL data sources object
    * @param {Object} options.context context object which will be shared across all resolvers
+   * @param {Object} options.htmlTagAttrs dom attributes of html tag
    * @param {ReactElement} options.appElement: Application main React Element
    * @param {Function} options.headElement A function called with the current request that return a React Element which will be placed in the HTML <head>
    * @param {Function} options.bodyBottomElement A function called with the current request that return a React Element which will be placed in the bottom of the HTML <body>
@@ -43,6 +44,7 @@ export default function createServerRender({
     dataSources,
     cache,
     context,
+    htmlTagAttrs,
     appElement,
     headElement,
     bodyBottomElement,
@@ -79,6 +81,7 @@ export default function createServerRender({
         <Html
           content={content}
           initialState={initialState}
+          htmlTagAttrs={htmlTagAttrs}
           headElement={
             typeof headElement === "function" ? headElement({ req }) : null
           }

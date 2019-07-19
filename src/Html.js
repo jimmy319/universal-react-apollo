@@ -5,9 +5,15 @@ import {
   ROOT_CONTAINER_ID
 } from "./config/constants";
 
-const Html = ({ content, initialState, headElement, bodyBottomElement }) => {
+const Html = ({
+  content,
+  initialState,
+  headElement,
+  bodyBottomElement,
+  htmlTagAttrs = {}
+}) => {
   return (
-    <html>
+    <html {...htmlTagAttrs}>
       <head>{headElement}</head>
       <body>
         <div

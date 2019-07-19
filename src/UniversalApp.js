@@ -33,6 +33,7 @@ const initServer = function(app, routes, apolloServerOptions, production) {
       ({
         path,
         method = "get",
+        htmlTagAttrs,
         appElement,
         headElement,
         bodyBottomElement,
@@ -40,6 +41,7 @@ const initServer = function(app, routes, apolloServerOptions, production) {
       }) => {
         app[method.toLowerCase()](path, middlewareChain, (req, res, next) => {
           serverRender({
+            htmlTagAttrs,
             appElement,
             headElement,
             bodyBottomElement,
