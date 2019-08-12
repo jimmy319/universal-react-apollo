@@ -2,9 +2,13 @@
 
 ## Getting start
 
-Compile the library source before running
+1. Compile library source via `npm run build` before running example
+
+2. Example application setup (Note: compiled module will be located in \<rootDir\>/lib)
 
 ```
+cp ../../package.json ../../lib/
+
 npm i
 
 npm start
