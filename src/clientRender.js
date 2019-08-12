@@ -13,15 +13,18 @@ import {
 /**
  * Render universal application main component with server side prefetched state in client side
  * @param {ReactElement} appElement: Application main React Element
+ * @param {Object} inMemoryCacheConfig apollo client InMemoryCache constructor config object (available options: https://www.apollographql.com/docs/react/advanced/caching/#configuration) - optional
  */
-export default function clientRender(appElement) {
+export default function clientRender(appElement, inMemoryCacheConfig) {
   // create apollo client
   const client = new ApolloClient({
     link: createHttpLink({
       uri: "/graphql",
       credentials: "same-origin"
     }),
-    cache: new InMemoryCache().restore(window[REHYDRATION_STATE_DATA_KEY])
+    cache: new InMemoryCache(inMemoryCacheConfig).restore(
+      window[REHYDRATION_STATE_DATA_KEY]
+    )
   });
 
   // wrapping main component with Apollo Provider
