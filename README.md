@@ -120,9 +120,10 @@ Hydrate the universal app container (reuse server-side generated HTML content an
 
 *arguments:*
 
-|     arg       |                                                      description                                                                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| appElement    | Main application react element                                                                                                                                      |
+|     arg                |                                                      description                                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| appElement             | Main application react element                                                                                                                                      |
+| inMemoryCacheConfig    | apollo client InMemoryCache constructor config object (available options: https://www.apollographql.com/docs/react/advanced/caching/#configuration)                 |
 
 ## Data Model
 
