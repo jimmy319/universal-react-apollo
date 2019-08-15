@@ -4,7 +4,8 @@ import { ApolloClient } from "apollo-client";
 import { SchemaLink } from "apollo-link-schema";
 import { makeExecutableSchema } from "graphql-tools";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloProvider, renderToStringWithData } from "react-apollo";
+import { ApolloProvider } from "@apollo/react-hooks";
+import { renderToStringWithData } from "@apollo/react-ssr";
 
 import Html from "./Html";
 
