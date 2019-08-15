@@ -1,6 +1,6 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 
 const GET_MESSAGE = gql`
   query getMessage {
@@ -11,15 +11,10 @@ const GET_MESSAGE = gql`
 `
 
 const App = () => {
+  const { data } = useQuery(GET_MESSAGE)
   return (
     <div>
-      <Query query={GET_MESSAGE}>
-        {
-          ({ data }) => {
-            return (<h1>{data.greeting.content}</h1>)
-          }
-        }
-      </Query>
+      <h1>{data.greeting && data.greeting.content}</h1>
       <button onClick={() => console.log('event handler attached')}>Click me</button>
     </div>
   )

@@ -46,6 +46,7 @@ app.use(function(err, req, res, next) {
   if (res.headersSent) {
     return next(err)
   }
+  console.log('error: ', err)
   res.send('Oops... something went wrong')
 })
 
