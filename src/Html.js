@@ -10,7 +10,8 @@ const Html = ({
   initialState,
   headElement,
   bodyBottomElement,
-  htmlTagAttrs = {}
+  htmlTagAttrs = {},
+  inlineStateNonce
 }) => {
   return (
     <html {...htmlTagAttrs}>
@@ -21,6 +22,7 @@ const Html = ({
           dangerouslySetInnerHTML={{ __html: content }}
         />
         <script
+          nonce={inlineStateNonce}
           dangerouslySetInnerHTML={{
             __html: `window.${REHYDRATION_STATE_DATA_KEY}=${JSON.stringify(
               initialState
