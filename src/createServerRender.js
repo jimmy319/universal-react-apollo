@@ -91,6 +91,7 @@ export default function createServerRender({
               ? bodyBottomElement({ req })
               : null
           }
+          inlineStateNonce={req.nonce}
         />
       );
 
