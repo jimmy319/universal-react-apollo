@@ -70,7 +70,15 @@ export default function createServerRender({
           dataSources
         }
       }),
-      cache: new InMemoryCache()
+      cache: new InMemoryCache(),
+      defaultOptions: {
+        query: {
+          errorPolicy: "all"
+        },
+        mutate: {
+          errorPolicy: "all"
+        }
+      }
     });
 
     // wrapping main component with Apollo Provider

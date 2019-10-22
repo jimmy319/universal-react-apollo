@@ -24,7 +24,15 @@ export default function clientRender(appElement, inMemoryCacheConfig) {
     }),
     cache: new InMemoryCache(inMemoryCacheConfig).restore(
       window[REHYDRATION_STATE_DATA_KEY]
-    )
+    ),
+    defaultOptions: {
+      query: {
+        errorPolicy: "all"
+      },
+      mutate: {
+        errorPolicy: "all"
+      }
+    }
   });
 
   // wrapping main component with Apollo Provider
