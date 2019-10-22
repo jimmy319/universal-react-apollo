@@ -26,6 +26,9 @@ export default function clientRender(appElement, inMemoryCacheConfig) {
       window[REHYDRATION_STATE_DATA_KEY]
     ),
     defaultOptions: {
+      watchQuery: {
+        errorPolicy: "all"
+      },
       query: {
         errorPolicy: "all"
       },

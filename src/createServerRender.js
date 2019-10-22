@@ -72,6 +72,9 @@ export default function createServerRender({
       }),
       cache: new InMemoryCache(),
       defaultOptions: {
+        watchQuery: {
+          errorPolicy: "all"
+        },
         query: {
           errorPolicy: "all"
         },
