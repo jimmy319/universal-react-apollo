@@ -37,7 +37,8 @@ const initServer = function(app, routes, apolloServerOptions, production) {
         appElement,
         headElement,
         bodyBottomElement,
-        middlewareChain = []
+        middlewareChain = [],
+        responseStatusCode = 200
       }) => {
         app[method.toLowerCase()](path, middlewareChain, (req, res, next) => {
           serverRender({
@@ -55,7 +56,7 @@ const initServer = function(app, routes, apolloServerOptions, production) {
                 : context
           })
             .then(html => {
-              res.status(200);
+              res.status(responseStatusCode);
               res.send(html);
               res.end();
             })
