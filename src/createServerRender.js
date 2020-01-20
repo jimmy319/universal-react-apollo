@@ -35,9 +35,9 @@ export default function createServerRender({
    * @param {Object} options.dataSources GQL data sources object
    * @param {Object} options.context context object which will be shared across all resolvers
    * @param {Object} options.htmlTagAttrs dom attributes of html tag
-   * @param {ReactElement} options.appElement: Application main React Element
-   * @param {Function} options.headElement A function called with the current request that return a React Element which will be placed in the HTML <head>
-   * @param {Function} options.bodyBottomElement A function called with the current request that return a React Element which will be placed in the bottom of the HTML <body>
+   * @param {Function} options.appElement: A function called with the current request that returns a React Element which will be placed in the <body>
+   * @param {Function} options.headElement A function called with the current request that returns a React Element which will be placed in the <head>
+   * @param {Function} options.bodyBottomElement A function called with the current request that returns a React Element which will be placed in the bottom of the appElement
    * @param {Object} options.req Express request object
    * @param {Object} options.cache GQL data source cache config object - optional
    */
@@ -85,7 +85,11 @@ export default function createServerRender({
     });
 
     // wrapping main component with Apollo Provider
-    const app = <ApolloProvider client={client}>{appElement}</ApolloProvider>;
+    const app = (
+      <ApolloProvider client={client}>
+        {typeof appElement === "function" && appElement({ req })}
+      </ApolloProvider>
+    );
 
     return renderToStringWithData(app).then(content => {
       const initialState = client.extract();
