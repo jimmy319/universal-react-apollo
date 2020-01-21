@@ -1,7 +1,8 @@
 language: node_js
+version: 1.0
 node_js:
   - '10'
-  - '8'
+  - '12'
 before_script: npm run pre-build
 script:
   - npm run build
@@ -18,6 +19,7 @@ jobs:
       before_deploy: ./setupPackage.sh && cd lib
       deploy:
         provider: npm
+        edge: true
         email: '$NPM_EMAIL'
         api_key: '$API_TOKEN'
         skip_cleanup: true
