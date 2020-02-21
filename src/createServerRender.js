@@ -5,7 +5,7 @@ import { SchemaLink } from "apollo-link-schema";
 import { makeExecutableSchema } from "graphql-tools";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { renderToStringWithData } from "@apollo/react-ssr";
+import { renderToStringWithData, getDataFromTree } from "@apollo/react-ssr";
 
 import Html from "./Html";
 
@@ -41,7 +41,7 @@ export default function createServerRender({
    * @param {Object} options.req Express request object
    * @param {Object} options.cache GQL data source cache config object - optional
    */
-  return ({
+  return async ({
     dataSources,
     cache,
     context,
@@ -61,7 +61,8 @@ export default function createServerRender({
       }
     }
 
-    const client = new ApolloClient({
+    // prepare apollo client
+    const apolloClientOptions = {
       ssrMode: true,
       link: new SchemaLink({
         schema,
@@ -82,35 +83,47 @@ export default function createServerRender({
           errorPolicy: "all"
         }
       }
-    });
+    };
 
+    const client = new ApolloClient(apolloClientOptions);
+    // client for ssr only (no need to do data extraction)
+    const ssrClient = new ApolloClient(apolloClientOptions);
+
+    // wrapping head component with Apollo Provider
+    const headWithApollo = (
+      <ApolloProvider client={ssrClient}>
+        {typeof headElement === "function" ? headElement({ req }) : null}
+      </ApolloProvider>
+    );
     // wrapping main component with Apollo Provider
-    const app = (
+    const appWithApollo = (
       <ApolloProvider client={client}>
         {typeof appElement === "function" && appElement({ req })}
       </ApolloProvider>
     );
 
-    return renderToStringWithData(app).then(content => {
-      const initialState = client.extract();
-      const html = (
-        <Html
-          content={content}
-          initialState={initialState}
-          htmlTagAttrs={htmlTagAttrs}
-          headElement={
-            typeof headElement === "function" ? headElement({ req }) : null
-          }
-          bodyBottomElement={
-            typeof bodyBottomElement === "function"
-              ? bodyBottomElement({ req })
-              : null
-          }
-          inlineStateNonce={req.nonce}
-        />
-      );
+    const renderingHead = getDataFromTree(headWithApollo);
+    const renderingApp = renderToStringWithData(appWithApollo);
 
-      return `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`;
-    });
+    const head = await renderingHead;
+    const app = await renderingApp;
+
+    const initialState = client.extract();
+    const html = (
+      <Html
+        content={app}
+        initialState={initialState}
+        htmlTagAttrs={htmlTagAttrs}
+        head={head}
+        bodyBottomElement={
+          typeof bodyBottomElement === "function"
+            ? bodyBottomElement({ req })
+            : null
+        }
+        inlineStateNonce={req.nonce}
+      />
+    );
+
+    return `<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`;
   };
 }

@@ -8,14 +8,14 @@ import {
 const Html = ({
   content,
   initialState,
-  headElement,
+  head,
   bodyBottomElement,
   htmlTagAttrs = {},
   inlineStateNonce
 }) => {
   return (
     <html {...htmlTagAttrs}>
-      <head>{headElement}</head>
+      <head dangerouslySetInnerHTML={{ __html: head }} />
       <body>
         <div
           id={ROOT_CONTAINER_ID}
