@@ -102,11 +102,8 @@ export default function createServerRender({
       </ApolloProvider>
     );
 
-    const renderingHead = getDataFromTree(headWithApollo);
-    const renderingApp = renderToStringWithData(appWithApollo);
-
-    const head = await renderingHead;
-    const app = await renderingApp;
+    const app = await renderToStringWithData(appWithApollo);
+    const head = await getDataFromTree(headWithApollo);
 
     const initialState = client.extract();
     const html = (
