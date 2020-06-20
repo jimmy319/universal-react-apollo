@@ -58,7 +58,6 @@ const initServer = function(app, routes, apolloServerOptions, production) {
             .then(html => {
               res.status(responseStatusCode);
               res.send(html);
-              res.end();
             })
             .catch(error => {
               next(error);
