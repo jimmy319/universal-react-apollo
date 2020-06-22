@@ -1,6 +1,6 @@
 {
   "name": "universal-react-apollo",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "Lightweight wrapper library around react-apollo and apollo-server-express to build universal (isomorphic) app with less boilerplate",
   "main": "universal-react-apollo.cjs.js",
   "module": "universal-react-apollo.esm.js",
