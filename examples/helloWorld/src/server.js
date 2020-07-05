@@ -17,7 +17,7 @@ const compiler = webpack(webpackConfig)
 const routes = [
   {
     path: '/greeting/:userName',
-    appElement: <HomeApp />,
+    appElement: () => <HomeApp />,
     bodyBottomElement: ({ req }) => (<script src="/home.js"></script>)
   }
 ]
