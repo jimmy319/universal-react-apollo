@@ -39,6 +39,7 @@ export default function createServerRender({
    * @param {Function} options.headElement A function called with the current request that returns a React Element which will be placed in the <head>
    * @param {Function} options.bodyBottomElement A function called with the current request that returns a React Element which will be placed in the bottom of the appElement
    * @param {Object} options.req Express request object
+   * @param {Object} options.res Express response object
    * @param {Object} options.cache GQL data source cache config object - optional
    */
   return async ({
@@ -49,7 +50,8 @@ export default function createServerRender({
     appElement,
     headElement,
     bodyBottomElement,
-    req
+    req,
+    res
   }) => {
     // initialize the data source, required for Apollo RESTDataSource
     for (const dataSource of Object.values(dataSources)) {
@@ -98,7 +100,7 @@ export default function createServerRender({
     // wrapping main component with Apollo Provider
     const appWithApollo = (
       <ApolloProvider client={client}>
-        {typeof appElement === "function" && appElement({ req })}
+        {typeof appElement === "function" && appElement({ req, res })}
       </ApolloProvider>
     );
 
