@@ -38,7 +38,7 @@ const initServer = function(app, routes, apolloServerOptions, production) {
         headElement,
         bodyBottomElement,
         middlewareChain = [],
-        responseStatusCode = 200
+        responseStatusCode = DEFAULT_STATUS_CODE
       }) => {
         app[method.toLowerCase()](path, middlewareChain, (req, res, next) => {
           serverRender({
