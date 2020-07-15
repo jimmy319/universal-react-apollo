@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
 
 import createServerRender from "./createServerRender";
-import { LIB_TAG } from "./config/constants";
+import { LIB_TAG, DEFAULT_STATUS_CODE } from "./config/constants";
 
 const initServer = function(app, routes, apolloServerOptions, production) {
   // mount apollo-server-express middleware
@@ -38,7 +38,7 @@ const initServer = function(app, routes, apolloServerOptions, production) {
         headElement,
         bodyBottomElement,
         middlewareChain = [],
-        responseStatusCode = 200
+        responseStatusCode = DEFAULT_STATUS_CODE
       }) => {
         app[method.toLowerCase()](path, middlewareChain, (req, res, next) => {
           serverRender({
@@ -47,6 +47,7 @@ const initServer = function(app, routes, apolloServerOptions, production) {
             headElement,
             bodyBottomElement,
             req,
+            res,
             cache: apolloServer.requestOptions.cache,
             dataSources:
               typeof dataSources === "function" ? dataSources() : null,
@@ -56,7 +57,12 @@ const initServer = function(app, routes, apolloServerOptions, production) {
                 : context
           })
             .then(html => {
-              res.status(responseStatusCode);
+              if (
+                res.statusCode === DEFAULT_STATUS_CODE &&
+                res.statusCode !== responseStatusCode
+              ) {
+                res.status(responseStatusCode);
+              }
               res.send(html);
             })
             .catch(error => {
