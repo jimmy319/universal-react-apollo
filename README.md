@@ -113,6 +113,7 @@ This function will mount [apollo-server-express](https://github.com/apollographq
 | routes        | An array of route object (see data model section)                                                                                                                              | 
 | apolloOptions | [Apollo server configuration options](https://www.apollographql.com/docs/apollo-server/api/apollo-server/#parameters)                                                          |
 | production    | (optional) Flag indicates that the universal app is running in production mode or not. We use this flag to decide to turn on or off `GQL playground`. Default value is `false` |
+| cors          | Cors options. Default value is `false`                                                                                                                                         |
 
 ### clientRender(appElement)
 
