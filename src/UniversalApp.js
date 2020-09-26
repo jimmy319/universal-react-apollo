@@ -3,14 +3,14 @@ import { ApolloServer } from "apollo-server-express";
 import createServerRender from "./createServerRender";
 import { LIB_TAG, DEFAULT_STATUS_CODE } from "./config/constants";
 
-const initServer = function(app, routes, apolloServerOptions, production) {
+const initServer = function(app, routes, apolloServerOptions, production, cors = false) {
   // mount apollo-server-express middleware
   const apolloServer = new ApolloServer({
     ...apolloServerOptions,
     uploads: false,
     playground: !production
   });
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, cors });
 
   const {
     typeDefs,
