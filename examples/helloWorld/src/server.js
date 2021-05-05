@@ -1,6 +1,6 @@
 import express from 'express'
 import React from 'react'
-import { initServer }  from '../../../lib/'
+import { initServer }  from '../../../lib/universal-react-apollo.cjs.js'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpack from 'webpack'
 
