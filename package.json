@@ -78,7 +78,7 @@
     "rollup": "^1.12.3",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-node-resolve": "^5.0.0",
-    "webpack": "^4.39.2",
-    "webpack-dev-middleware": "^3.7.0"
+    "webpack": "^5.36.2",
+    "webpack-dev-middleware": "^4.1.0"
   }
 }
