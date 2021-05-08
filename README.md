@@ -1,14 +1,21 @@
 # Universal React Apollo <a href='https://travis-ci.org/jimmy319/universal-react-apollo'><img src='https://travis-ci.org/jimmy319/universal-react-apollo.svg?branch=master' /></a>
 
-Universal React Apollo is a lightweight wrapper library around [react-apollo](https://github.com/apollographql/react-apollo) and [apollo-server-express](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express) to make it easy to build an universal app and reduce boilerplate code.
+Universal React Apollo is a lightweight wrapper library around [@apollo-client](https://github.com/apollographql/apollo-client) and [apollo-server-express](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express) to make it easy to build an universal app and reduce boilerplate code.
 
 ## Installation
 
-Install Universal React Apollo and related libraries
+Install `universal-react-apollo` and all its peer dependencies
+
+```
+npm install -S universal-react-apollo react react-dom @apollo/client graphql-tools graphql apollo-server-express express
+```
+
+⚠️ `react-apollo` related packages has removed from peerDependencies as of `universal-react-apollo@2.0.0` due to [@apollo/client migration](https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#apollo-link-). Please run the command below if you decide to use universal-react-apollo@1.x.x⚠️ 
 
 ```
 npm install -S universal-react-apollo react react-dom apollo-client apollo-cache-inmemory apollo-link-http apollo-link-schema react-apollo graphql-tag graphql-tools graphql apollo-server-express express
 ```
+
 ## Usage
 
 ### Step 1: Server side setup

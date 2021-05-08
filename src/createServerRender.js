@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { ApolloClient } from "apollo-client";
-import { SchemaLink } from "apollo-link-schema";
+import { SchemaLink } from "@apollo/client/link/schema";
 import { makeExecutableSchema } from "graphql-tools";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloProvider } from "@apollo/react-hooks";
-import { renderToStringWithData, getDataFromTree } from "@apollo/react-ssr";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import {
+  renderToStringWithData,
+  getDataFromTree
+} from "@apollo/client/react/ssr";
 
 import Html from "./Html";
 

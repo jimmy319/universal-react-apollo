@@ -5,12 +5,9 @@ const external = [
   'react',
   'react-dom',
   'react-dom/server',
-  '@apollo/react-hooks',
-  '@apollo/react-ssr',
-  'apollo-client',
-  'apollo-link-schema',
-  'apollo-link-http',
-  'apollo-cache-inmemory',
+  '@apollo/client',
+  '@apollo/client/link/schema',
+  '@apollo/client/react/ssr',
   'apollo-server-express',
   'graphql-tools'
 ]
