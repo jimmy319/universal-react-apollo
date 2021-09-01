@@ -7,7 +7,7 @@ Universal React Apollo is a lightweight wrapper library around [@apollo-client](
 Install `universal-react-apollo` and all its peer dependencies
 
 ```
-npm install -S universal-react-apollo react react-dom @apollo/client graphql-tools graphql apollo-server-express express
+npm install -S universal-react-apollo react react-dom @apollo/client @graphql-tools/schema graphql apollo-server-express express
 ```
 
 ⚠️ `react-apollo` related packages has removed from peerDependencies as of `universal-react-apollo@2.0.0` due to [@apollo/client migration](https://www.apollographql.com/docs/react/migrating/apollo-client-3-migration/#apollo-link-). Please run the command below if you decide to use universal-react-apollo@1.x.x⚠️
