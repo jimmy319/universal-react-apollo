@@ -41,12 +41,12 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3.3.16",
-    "apollo-server-express": "^2.0.0",
+    "apollo-server-express": "^3.0.0",
     "express": "^4.17.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "graphql": "^14.3.1",
-    "graphql-tools": "^4.0.0"
+    "@graphql-tools/schema": "^7.0.0"
   },
   "devDependencies": {
     "@apollo/client": "^3.3.16",
@@ -55,11 +55,11 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.5.5",
-    "apollo-server-express": "^2.24.0",
+    "apollo-server-express": "^3.0.0",
     "babel-loader": "^8.0.6",
     "express": "^4.17.0",
     "graphql": "^14.3.1",
-    "graphql-tools": "^4.0.4",
+    "@graphql-tools/schema": "^8.2.0",
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
     "prettier": "^1.17.1",
