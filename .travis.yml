@@ -1,8 +1,7 @@
 language: node_js
-version: 1.0
 node_js:
-  - '10'
-  - '12'
+  - "12"
+  - "14"
 before_script: npm run pre-build
 script:
   - npm run build
@@ -11,7 +10,7 @@ jobs:
   include:
     - stage: npm release
       if: tag IS present
-      node_js: '10'
+      node_js: "10"
       before_script:
         - npm run pre-build
         - chmod +x ./setupPackage.sh
@@ -20,8 +19,7 @@ jobs:
       deploy:
         provider: npm
         edge: true
-        email: '$NPM_EMAIL'
-        api_key: '$API_TOKEN'
-        skip_cleanup: true
+        email: "$NPM_EMAIL"
+        api_token: "$API_TOKEN"
         on:
           tags: true
