@@ -9,7 +9,7 @@ const external = [
   '@apollo/client/link/schema',
   '@apollo/client/react/ssr',
   'apollo-server-express',
-  'graphql-tools'
+  '@graphql-tools/schema'
 ]
 const plugins = [
   resolve(),

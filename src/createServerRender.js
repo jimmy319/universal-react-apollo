@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { SchemaLink } from "@apollo/client/link/schema";
-import { makeExecutableSchema } from "graphql-tools";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import {
   renderToStringWithData,
